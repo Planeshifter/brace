@@ -2721,7 +2721,7 @@ var XmlBehaviour = acequire("./behaviour/xml").XmlBehaviour;
 var HtmlFoldMode = acequire("./folding/html").FoldMode;
 var HtmlCompletions = acequire("./html_completions").HtmlCompletions;
 var WorkerClient = acequire("../worker/worker_client").WorkerClient;
-var voidElements = ["area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "menuitem", "param", "source", "track", "wbr","RShell","TeX","FeedbackButtons","FunctionPlot"];
+var voidElements = ["area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "menuitem", "param", "source", "track", "wbr","rshell","tex","feedbackbuttons","functionplot"];
 var optionalEndTags = ["li", "dt", "dd", "p", "rt", "rp", "optgroup", "option", "colgroup", "td", "th"];
 
 var Mode = function(options) {
