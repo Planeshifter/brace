@@ -2585,7 +2585,11 @@ var attributeMap = {
     "summary": {},
     "command": {"type": 1, "label": 1, "icon": 1, "disabled": 1, "checked": 1, "radiogroup": 1, "command": 1},
     "menu": {"type": 1, "label": 1},
-    "dialog": {"open": 1}
+    "dialog": {"open": 1},
+    "RShell": {},
+    "FeedbackButtons": {},
+    "TeX": {},
+    "FunctionPlot": {}
 };
 
 var elements = Object.keys(attributeMap);
