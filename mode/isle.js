@@ -2586,10 +2586,10 @@ var attributeMap = {
     "command": {"type": 1, "label": 1, "icon": 1, "disabled": 1, "checked": 1, "radiogroup": 1, "command": 1},
     "menu": {"type": 1, "label": 1},
     "dialog": {"open": 1},
-    "RShell": {},
-    "FeedbackButtons": {},
-    "TeX": {},
-    "FunctionPlot": {}
+    "rshell": {},
+    "feedbackbuttons": {},
+    "tex": {},
+    "functionplot": {}
 };
 
 var elements = Object.keys(attributeMap);
@@ -2721,7 +2721,7 @@ var XmlBehaviour = acequire("./behaviour/xml").XmlBehaviour;
 var HtmlFoldMode = acequire("./folding/html").FoldMode;
 var HtmlCompletions = acequire("./html_completions").HtmlCompletions;
 var WorkerClient = acequire("../worker/worker_client").WorkerClient;
-var voidElements = ["area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "menuitem", "param", "source", "track", "wbr","RShell","TeX","FeedbackButtons","FunctionPlot"];
+var voidElements = ["area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "menuitem", "param", "source", "track", "wbr","rshell","tex","feedbackbuttons","functionplot"];
 var optionalEndTags = ["li", "dt", "dd", "p", "rt", "rp", "optgroup", "option", "colgroup", "td", "th"];
 
 var Mode = function(options) {
