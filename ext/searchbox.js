@@ -6,7 +6,7 @@ var lang = acequire("../lib/lang");
 var event = acequire("../lib/event");
 var searchboxCss = "\
 .ace_search {\
-background-color: #ddd;\
+background-color: lightskyblue;\
 border: 1px solid #cbcbcb;\
 border-top: 0 none;\
 max-width: 325px;\
@@ -15,8 +15,9 @@ margin: 0;\
 padding: 4px;\
 padding-right: 6px;\
 padding-bottom: 0;\
-position: absolute;\
-top: 0px;\
+position: fixed;\
+left: 10px;\
+bottom: 20px;\
 z-index: 99;\
 white-space: normal;\
 }\
@@ -197,12 +198,12 @@ var SearchBox = function(editor, range, showReplaceForm) {
         this.searchInput = this.searchBox.querySelector(".ace_search_field");
         this.replaceInput = this.replaceBox.querySelector(".ace_search_field");
     };
-    
+
     this.$init = function() {
         var sb = this.element;
-        
+
         this.$initElements(sb);
-        
+
         var _this = this;
         event.addListener(sb, "mousedown", function(e) {
             setTimeout(function(){
@@ -348,7 +349,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
         this.find(true, true);
     };
     this.findAll = function(){
-        var range = this.editor.findAll(this.searchInput.value, {            
+        var range = this.editor.findAll(this.searchInput.value, {
             regExp: this.regExpOption.checked,
             caseSensitive: this.caseSensitiveOption.checked,
             wholeWord: this.wholeWordOption.checked
@@ -362,7 +363,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
     this.replace = function() {
         if (!this.editor.getReadOnly())
             this.editor.replace(this.replaceInput.value);
-    };    
+    };
     this.replaceAndFindNext = function() {
         if (!this.editor.getReadOnly()) {
             this.editor.replace(this.replaceInput.value);
@@ -387,9 +388,9 @@ var SearchBox = function(editor, range, showReplaceForm) {
 
         if (value)
             this.searchInput.value = value;
-        
+
         this.find(false, false, true);
-        
+
         this.searchInput.focus();
         this.searchInput.select();
 
@@ -413,4 +414,3 @@ exports.Search = function(editor, isReplace) {
                 (function() {
                     ace.acequire(["ace/ext/searchbox"], function() {});
                 })();
-            
