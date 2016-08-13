@@ -17,7 +17,6 @@ padding-right: 6px;\
 padding-bottom: 0;\
 position: fixed;\
 left: 10px;\
-bottom: 20px;\
 z-index: 99;\
 white-space: normal;\
 }\
