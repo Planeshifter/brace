@@ -19,6 +19,7 @@ position: fixed;\
 left: 10px;\
 z-index: 99;\
 white-space: normal;\
+font-size: 14px;\
 }\
 .ace_search.left {\
 border-left: 0 none;\
@@ -77,7 +78,7 @@ cursor: default;\
 .ace_searchbtn {\
 background-position: 50% 50%;\
 background-repeat: no-repeat;\
-width: 27px;\
+width: auto;\
 }\
 .ace_searchbtn.prev {\
 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADFJREFUeNpiSU1NZUAC/6E0I0yACYskCpsJiySKIiY0SUZk40FyTEgCjGgKwTRAgAEAQJUIPCE+qfkAAAAASUVORK5CYII=);    \
