@@ -6,7 +6,7 @@ var lang = acequire("../lib/lang");
 var event = acequire("../lib/event");
 var searchboxCss = "\
 .ace_search {\
-background-color: lightskyblue;\
+background-color: #ddd;\
 border: 1px solid #cbcbcb;\
 border-top: 0 none;\
 max-width: 325px;\
@@ -81,10 +81,10 @@ background-repeat: no-repeat;\
 width: auto;\
 }\
 .ace_searchbtn.prev {\
-background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADFJREFUeNpiSU1NZUAC/6E0I0yACYskCpsJiySKIiY0SUZk40FyTEgCjGgKwTRAgAEAQJUIPCE+qfkAAAAASUVORK5CYII=);    \
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADFJREFUeNpiSU1NZUAC/6E0I0yACYskCpsJiySKIiY0SUZk40FyTEgCjGgKwTRAgAEAQJUIPCE+qfkAAAAASUVORK5CYII=);\
 }\
 .ace_searchbtn.next {\
-background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADRJREFUeNpiTE1NZQCC/0DMyIAKwGJMUAYDEo3M/s+EpvM/mkKwCQxYjIeLMaELoLMBAgwAU7UJObTKsvAAAAAASUVORK5CYII=);    \
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADRJREFUeNpiTE1NZQCC/0DMyIAKwGJMUAYDEo3M/s+EpvM/mkKwCQxYjIeLMaELoLMBAgwAU7UJObTKsvAAAAAASUVORK5CYII=);\
 }\
 .ace_searchbtn_close {\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAAAZ0lEQVR42u2SUQrAMAhDvazn8OjZBilCkYVVxiis8H4CT0VrAJb4WHT3C5xU2a2IQZXJjiQIRMdkEoJ5Q2yMqpfDIo+XY4k6h+YXOyKqTIj5REaxloNAd0xiKmAtsTHqW8sR2W5f7gCu5nWFUpVjZwAAAABJRU5ErkJggg==) no-repeat 50% 0;\
@@ -146,7 +146,8 @@ text-align: right;\
 -o-user-select: none;\
 -ms-user-select: none;\
 user-select: none;\
-}";
+}\
+";
 var HashHandler = acequire("../keyboard/hash_handler").HashHandler;
 var keyUtil = acequire("../lib/keys");
 
@@ -198,12 +199,12 @@ var SearchBox = function(editor, range, showReplaceForm) {
         this.searchInput = this.searchBox.querySelector(".ace_search_field");
         this.replaceInput = this.replaceBox.querySelector(".ace_search_field");
     };
-
+    
     this.$init = function() {
         var sb = this.element;
-
+        
         this.$initElements(sb);
-
+        
         var _this = this;
         event.addListener(sb, "mousedown", function(e) {
             setTimeout(function(){
@@ -337,9 +338,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
             wholeWord: this.wholeWordOption.checked,
             preventScroll: preventScroll
         });
-        var noMatch = !range && this.searchInput.value;
-        dom.setCssClass(this.searchBox, "ace_nomatch", noMatch);
-        this.editor._emit("findSearchBox", { match: !noMatch });
+        dom.setCssClass(this.searchBox, "ace_nomatch", !range && this.searchInput.value);
         this.highlight();
     };
     this.findNext = function() {
@@ -349,7 +348,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
         this.find(true, true);
     };
     this.findAll = function(){
-        var range = this.editor.findAll(this.searchInput.value, {
+        var range = this.editor.findAll(this.searchInput.value, {            
             regExp: this.regExpOption.checked,
             caseSensitive: this.caseSensitiveOption.checked,
             wholeWord: this.wholeWordOption.checked
@@ -363,7 +362,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
     this.replace = function() {
         if (!this.editor.getReadOnly())
             this.editor.replace(this.replaceInput.value);
-    };
+    };    
     this.replaceAndFindNext = function() {
         if (!this.editor.getReadOnly()) {
             this.editor.replace(this.replaceInput.value);
@@ -388,9 +387,9 @@ var SearchBox = function(editor, range, showReplaceForm) {
 
         if (value)
             this.searchInput.value = value;
-
+        
         this.find(false, false, true);
-
+        
         this.searchInput.focus();
         this.searchInput.select();
 
@@ -414,3 +413,4 @@ exports.Search = function(editor, isReplace) {
                 (function() {
                     ace.acequire(["ace/ext/searchbox"], function() {});
                 })();
+            

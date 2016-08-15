@@ -15,10 +15,11 @@ margin: 0;\
 padding: 4px;\
 padding-right: 6px;\
 padding-bottom: 0;\
-position: absolute;\
-top: 0px;\
+position: fixed;\
+left: 10px;\
 z-index: 99;\
 white-space: normal;\
+font-size: 14px;\
 }\
 .ace_search.left {\
 border-left: 0 none;\
@@ -77,13 +78,13 @@ cursor: default;\
 .ace_searchbtn {\
 background-position: 50% 50%;\
 background-repeat: no-repeat;\
-width: 27px;\
+width: auto;\
 }\
 .ace_searchbtn.prev {\
-background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADFJREFUeNpiSU1NZUAC/6E0I0yACYskCpsJiySKIiY0SUZk40FyTEgCjGgKwTRAgAEAQJUIPCE+qfkAAAAASUVORK5CYII=);    \
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADFJREFUeNpiSU1NZUAC/6E0I0yACYskCpsJiySKIiY0SUZk40FyTEgCjGgKwTRAgAEAQJUIPCE+qfkAAAAASUVORK5CYII=);\
 }\
 .ace_searchbtn.next {\
-background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADRJREFUeNpiTE1NZQCC/0DMyIAKwGJMUAYDEo3M/s+EpvM/mkKwCQxYjIeLMaELoLMBAgwAU7UJObTKsvAAAAAASUVORK5CYII=);    \
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADRJREFUeNpiTE1NZQCC/0DMyIAKwGJMUAYDEo3M/s+EpvM/mkKwCQxYjIeLMaELoLMBAgwAU7UJObTKsvAAAAAASUVORK5CYII=);\
 }\
 .ace_searchbtn_close {\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAAAZ0lEQVR42u2SUQrAMAhDvazn8OjZBilCkYVVxiis8H4CT0VrAJb4WHT3C5xU2a2IQZXJjiQIRMdkEoJ5Q2yMqpfDIo+XY4k6h+YXOyKqTIj5REaxloNAd0xiKmAtsTHqW8sR2W5f7gCu5nWFUpVjZwAAAABJRU5ErkJggg==) no-repeat 50% 0;\
@@ -145,7 +146,8 @@ text-align: right;\
 -o-user-select: none;\
 -ms-user-select: none;\
 user-select: none;\
-}";
+}\
+";
 var HashHandler = acequire("../keyboard/hash_handler").HashHandler;
 var keyUtil = acequire("../lib/keys");
 
@@ -336,9 +338,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
             wholeWord: this.wholeWordOption.checked,
             preventScroll: preventScroll
         });
-        var noMatch = !range && this.searchInput.value;
-        dom.setCssClass(this.searchBox, "ace_nomatch", noMatch);
-        this.editor._emit("findSearchBox", { match: !noMatch });
+        dom.setCssClass(this.searchBox, "ace_nomatch", !range && this.searchInput.value);
         this.highlight();
     };
     this.findNext = function() {
