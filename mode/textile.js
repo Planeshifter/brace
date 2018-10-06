@@ -113,6 +113,7 @@ var MatchingBraceOutdent = acequire("./matching_brace_outdent").MatchingBraceOut
 var Mode = function() {
     this.HighlightRules = TextileHighlightRules;
     this.$outdent = new MatchingBraceOutdent();
+    this.$behaviour = this.$defaultBehaviour;
 };
 oop.inherits(Mode, TextMode);
 
@@ -139,3 +140,11 @@ oop.inherits(Mode, TextMode);
 exports.Mode = Mode;
 
 });
+                (function() {
+                    ace.acequire(["ace/mode/textile"], function(m) {
+                        if (typeof module == "object" && typeof exports == "object" && module) {
+                            module.exports = m;
+                        }
+                    });
+                })();
+            

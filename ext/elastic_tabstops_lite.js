@@ -269,6 +269,10 @@ acequire("../config").defineOptions(Editor.prototype, "editor", {
 
 });
                 (function() {
-                    ace.acequire(["ace/ext/elastic_tabstops_lite"], function() {});
+                    ace.acequire(["ace/ext/elastic_tabstops_lite"], function(m) {
+                        if (typeof module == "object" && typeof exports == "object" && module) {
+                            module.exports = m;
+                        }
+                    });
                 })();
             

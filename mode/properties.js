@@ -61,6 +61,7 @@ var PropertiesHighlightRules = acequire("./properties_highlight_rules").Properti
 
 var Mode = function() {
     this.HighlightRules = PropertiesHighlightRules;
+    this.$behaviour = this.$defaultBehaviour;
 };
 oop.inherits(Mode, TextMode);
 
@@ -70,3 +71,11 @@ oop.inherits(Mode, TextMode);
 
 exports.Mode = Mode;
 });
+                (function() {
+                    ace.acequire(["ace/mode/properties"], function(m) {
+                        if (typeof module == "object" && typeof exports == "object" && module) {
+                            module.exports = m;
+                        }
+                    });
+                })();
+            
